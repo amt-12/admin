@@ -1,0 +1,8 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.css-var-root.ant-layout{
+  height: 100vh;
+}
