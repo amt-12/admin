@@ -49,20 +49,27 @@ console.log("imageData", imageData);
       }
     },
   };
-const handleApi =()=>{
-try {
+const handleApi = () => {
+  if (!imageData) {
+    console.log("No image selected");
+    return;
+  }
+
   const uploadData = new FormData();
   uploadData.append("file", imageData);
-console.log("uploadData", uploadData);
-  axios.post("http://localhost:5002/api/adhaarTeam/uploadImage", uploadData)
+  console.log("uploadData created with file");
+
+  axios.post("http://localhost:5002/api/adhaarTeam/uploadImage", uploadData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
   .then((response) => {
     console.log("response from api", response);
-  })
-  
-} catch (error) {
-  console.log("error while fetching data from api", error);
-}
-}
+  }).catch((error) => {
+    console.log("error while making api call", error);
+  });
+};
 
 
 const getMenuItems = () => {
